@@ -97,6 +97,13 @@ def show_phone(contacts, *args):
     return f'User {name} - Phones: {phone}'
 
 
+@InputError
+def del_phone(contacts, *args):
+    name, phone = args[0], args[1]
+    contacts[name].del_phone(phone)
+    return f'Delete phone {phone} from user {name}'
+
+
 def show_all(contacts, *args):
     result = 'List of all users:'
     for key in contacts:
@@ -123,13 +130,15 @@ def help_me(*args):
     hello - greeting;
     add name phone - add user to directory;
     change name old_phone new_phone - change the user's phone number;
+    del name phone - delete the user's phone number;
     phone name - show the user's phone number;
     show all - show data of all users;
     good bye or close or exit or . - exit the program"""
 
 
 COMMANDS = {salute: ['hello'], add_contact: ['add'], change_contact: ['change'], show_phone: ['phone'],
-            help_me: ['?', 'help'], show_all: ['show all'], goodbye: ['good bye', 'close', 'exit', '.']}
+            help_me: ['?', 'help'], show_all: ['show all'], goodbye: ['good bye', 'close', 'exit', '.'],
+            del_phone: ['del']}
 
 
 def command_parser(user_command: str) -> (str, list):
