@@ -6,7 +6,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)
 ![GitHub Release Date](https://img.shields.io/github/release-date/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)
-![GitHub all releases](https://img.shields.io/github/downloads/VlodyaKr/Python-6-Core-HomeWork-10/total?style=plastic)
+![GitHub all releases](https://img.shields.io/github/downloads/VlodyaKr/Python-6-Core-HomeWork-10/total?color=cyan&style=plastic)
 [![GitHub issues](https://img.shields.io/github/issues/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)](https://github.com/VlodyaKr/Python-6-Core-HomeWork-10/issues)
 [![GitHub forks](https://img.shields.io/github/forks/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)](https://github.com/VlodyaKr/Python-6-Core-HomeWork-10/network)
 [![GitHub stars](https://img.shields.io/github/stars/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)](https://github.com/VlodyaKr/Python-6-Core-HomeWork-10/stargazers)
@@ -23,11 +23,17 @@ ___
 - Цикл запит-відповідь. Ця частина програми відповідає за отримання від користувача даних та повернення користувачеві відповіді від функції-`handler`а.
 
 На першому етапі наш бот-асистент повинен вміти зберігати ім'я та номер телефону, знаходити номер телефону на ім'я, змінювати записаний номер телефону, виводити в консоль усі записи, які зберіг. Щоб реалізувати таку нескладну логіку, скористаємося словником. У словнику зберігатимемо ім'я користувача як ключ і номер телефону як значення.
+
 На другому етапі ми повинні реалізувати такі класи:
+
 Клас `AddressBook`, який успадковується від `UserDict`, і ми потім додамо логіку пошуку за записами цього класу.
+
 Клас `Record`, який відповідає за логіку додавання/видалення/редагування необов'язкових полів та зберігання обов'язкового поля `Name`.
+
 Клас `Field`, який буде батьківським для всіх полів, потім потім реалізуємо логіку загальну для всіх полів.
+
 Клас `Name` - обов'язкове поле з ім'ям.
+
 Клас `Phone`, необов'язкове поле з телефоном і один запис (`Record`) може містити кілька.
 ___
 #### Автор
