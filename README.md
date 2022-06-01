@@ -3,7 +3,7 @@
 ### *Python 6 Core HomeWork 10*
 
 [![Language](https://img.shields.io/badge/language-python-blue)](https://www.python.org)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/VlodyaKr/Python-6-Core-HomeWork-10?color=yellowgreen&style=plastic)
 ![GitHub Release Date](https://img.shields.io/github/release-date/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/VlodyaKr/Python-6-Core-HomeWork-10?style=plastic)
 ![GitHub all releases](https://img.shields.io/github/downloads/VlodyaKr/Python-6-Core-HomeWork-10/total?color=cyan&style=plastic)
