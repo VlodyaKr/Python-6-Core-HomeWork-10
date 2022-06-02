@@ -8,6 +8,9 @@ class Field:
     def __str__(self) -> str:
         return f'{self.value}'
 
+    def __eq__(self, other) -> bool:
+        return self.value == other.value
+
 
 class Name(Field):
     pass
@@ -23,15 +26,15 @@ class Record:
         self.phone_list = phones
 
     def __str__(self) -> str:
-        return f'User {self.name} - Phones: {self.phone_list}'
+        return f'User {self.name} - Phones: {", ".join([phone.value for phone in self.phone_list])}'
 
-    def add_phone(self, phone: str) -> None:
+    def add_phone(self, phone: Phone) -> None:
         self.phone_list.append(phone)
 
-    def del_phone(self, phone: str) -> None:
+    def del_phone(self, phone: Phone) -> None:
         self.phone_list.remove(phone)
 
-    def edit_phone(self, phone: str, new_phone: str) -> None:
+    def edit_phone(self, phone: Phone, new_phone: Phone) -> None:
         self.phone_list.remove(phone)
         self.phone_list.append(new_phone)
 
@@ -70,37 +73,37 @@ def salute(*args):
 def add_contact(contacts, *args):
     name = Name(args[0])
     phone = Phone(args[1])
-    verify_phone(phone.value)
+    verify_phone(phone)
     if name.value in contacts:
-        if phone.value in contacts[name.value].phone_list:
+        if phone in contacts[name.value].phone_list:
             raise PhoneUserAlreadyExists
         else:
-            contacts[name.value].add_phone(phone.value)
+            contacts[name.value].add_phone(phone)
             return f'Add phone {phone} to user {name}'
     else:
-        contacts[name.value] = Record(name, [phone.value])
+        contacts[name.value] = Record(name, [phone])
         return f'Add user {name} with phone number {phone}'
 
 
 @InputError
 def change_contact(contacts, *args):
     name, old_phone, new_phone = args[0], args[1], args[2]
-    verify_phone(new_phone)
-    contacts[name].edit_phone(old_phone, new_phone)
+    verify_phone(Phone(new_phone))
+    contacts[name].edit_phone(Phone(old_phone), Phone(new_phone))
     return f'Change to user {name} phone number from {old_phone} to {new_phone}'
 
 
 @InputError
 def show_phone(contacts, *args):
     name = args[0]
-    phone = contacts[name].phone_list
-    return f'User {name} - Phones: {phone}'
+    phone = contacts[name]
+    return f'{phone}'
 
 
 @InputError
 def del_phone(contacts, *args):
     name, phone = args[0], args[1]
-    contacts[name].del_phone(phone)
+    contacts[name].del_phone(Phone(phone))
     return f'Delete phone {phone} from user {name}'
 
 
@@ -119,8 +122,8 @@ def unknown_command(*args):
     return 'Unknown command! Enter again!'
 
 
-def verify_phone(phone: str):
-    new_phone = phone.removeprefix('+').replace('(', '').replace(')', '').replace('-', '')
+def verify_phone(phone: Phone):
+    new_phone = phone.value.removeprefix('+').replace('(', '').replace(')', '').replace('-', '')
     return str(int(new_phone))
 
 
@@ -136,9 +139,9 @@ def help_me(*args):
     good bye or close or exit or . - exit the program"""
 
 
-COMMANDS = {salute: ['hello'], add_contact: ['add'], change_contact: ['change'], show_phone: ['phone'],
+COMMANDS = {salute: ['hello'], add_contact: ['add '], change_contact: ['change '], show_phone: ['phone '],
             help_me: ['?', 'help'], show_all: ['show all'], goodbye: ['good bye', 'close', 'exit', '.'],
-            del_phone: ['del']}
+            del_phone: ['del ']}
 
 
 def command_parser(user_command: str) -> (str, list):
